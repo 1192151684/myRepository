@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sam.wms.mapper.StudentMapper">
+
+    <select id="findStudentMapperList"  resultType="com.sam.wms.entity.Student">
+        SELECT
+            id,
+            math,
+            english,
+            chinese,
+            name
+        FROM student
+    </select>
+</mapper>
