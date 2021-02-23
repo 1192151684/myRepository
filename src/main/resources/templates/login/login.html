@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/common_js :: common_js"></div>
+</head>
+<body class="login-bg">
+    <div class="login layui-anim layui-anim-up">
+        <div class="message">管理登录</div>
+        <div id="darkbannerwrap"></div>
+        <form class="layui-form" >
+            <input name="account" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+            <hr class="hr15">
+            <input name="passWord" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+            <hr class="hr15">
+            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="button" onclick="submitLoginInfo()">
+            <hr class="hr20" >
+        </form>
+    </div>
+    <script type="text/javascript">
+        $(function(){});
+        function submitLoginInfo() {
+        var account = $("input[name = 'account']").val();
+        var passWord = $("input[name = 'passWord']").val();
+        $.ajax({
+            url:"/checkUser",
+            type:"POST",
+            dataType:'json',
+            data:{account:account,passWord:passWord},
+            async:false,
+            success : function(data) {
+                var body = $.parseJSON(data.body);
+                if(body == null){
+                    alert(111);
+                }
+                var userId = body.id;
+                alert(userId);
+                if(data.code == '1001'){
+                  window.location.href = "/index?userId=" + userId;
+              }else{
+              }
+            }
+        })
+        }
+    </script>
+</body>
+</html>

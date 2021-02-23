@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sam.wms.mapper.SysGroupMapper">
+
+<select id="findSysGroupList"  resultType="com.sam.wms.entity.SysGroup">
+    SELECT
+        id,
+        parent_id parentId,
+        url,
+        name,
+        crate_by crateBy
+    FROM sys_title
+    </select>
+</mapper>

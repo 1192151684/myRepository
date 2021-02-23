@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="common/common_js :: common_js"></div>
+</head>
+<body>
+    <!-- 顶部开始 -->
+    <div class="container">
+        <div class="logo"><a th:href="@{/index(userId=${sysUser.Id})}">简视管理系统</a></div>
+        <div class="left_open">
+            <i title="展开左侧栏" class="iconfont">&#xe699;</i>
+        </div>
+        <ul class="layui-nav right" lay-filter="">
+          <li class="layui-nav-item">
+            <a href="javascript:;">admin</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+              <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
+              <dd><a onclick="x_admin_show('切换帐号','/login')">切换帐号</a></dd>
+              <dd><a th:href="@{/login}">退出</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item to-index"><a th:href="@{/index(userId=${sysUser.Id})}">前台首页</a></li>
+        </ul>
+        
+    </div>
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+     <!-- 左侧菜单开始 -->
+    <div class="left-nav">
+      <div id="side-nav">
+        <ul id="nav">
+            <li th:each="parentSysGroup:${groupMap.parentSysGroupList}">
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe726;</i>
+                    <cite th:text="${parentSysGroup.name}"></cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu" th:each="subSysGroup : ${groupMap.subSysGroupList}"
+                    th:if="${parentSysGroup.id} eq ${subSysGroup.parentId}">
+                    <li>
+                        <a th:attr="data-suburl=@{${parentSysGroup.url}+ ${subSysGroup.url}}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite th:text="${subSysGroup.name}"></cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+        </ul>
+      </div>
+    </div>
+    <!-- <div class="x-slide_left"></div> -->
+    <!-- 左侧菜单结束 -->
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+          <ul class="layui-tab-title">
+            <li class="home"><i class="layui-icon">&#xe68e;</i>我的桌面</li>
+          </ul>
+          <div class="layui-tab-content">
+            <div id="iframeTag" class="layui-tab-item layui-show">
+            <iframe src = '' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="page-content-bg"></div>
+    <!-- 右侧主体结束 -->
+    <!-- 中部结束 -->
+    <!-- 底部开始 -->
+    <div class="footer">
+        <div class="copyright">@龚文贤个人所有</div>
+    </div>
+    <!-- 底部结束 -->
+    <script>
+    </script>
+</body>
+</html>
