@@ -33,9 +33,11 @@ public class ResultMassage {
     }
 
     public ResultMassage(String code, String message, String body) {
+
         this.code = code;
         this.message = message;
-        this.body = body;
-    }
 
+        this.body = body;
+
+    }
 }

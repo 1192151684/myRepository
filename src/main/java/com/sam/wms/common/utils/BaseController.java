@@ -45,7 +45,7 @@ public class BaseController {
     }
 
     /**
-     *
+     * json 返回
      * @param code
      * @param message
      * @param body
@@ -55,4 +55,5 @@ public class BaseController {
         ResultMassage resultMassage = new ResultMassage(code, message, toJson(body));
         return toJson(resultMassage);
     }
+
 }

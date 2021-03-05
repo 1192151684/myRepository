@@ -4,11 +4,16 @@
 
     <select id="findStudentMapperList"  resultType="com.sam.wms.entity.Student">
         SELECT
-            id,
-            math,
-            english,
-            chinese,
-            name
-        FROM student
+            st.st_id id,
+            st.st_name name,
+            MAX(CASE sc.co_id WHEN 1 THEN score ELSE 0 END ) chinese,
+            MAX(CASE sc.co_id WHEN 2 THEN score ELSE 0 END ) math ,
+            MAX(CASE sc.co_id WHEN 3 THEN score ELSE 0 END ) english
+        FROM
+            st_student st
+                inner  JOIN  sc_score sc ON st.st_id = sc.st_id
+                INNER JOIN co_course co on co.co_id = sc.co_id
+        GROUP BY st.st_id
     </select>
+
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class ProductController extends BaseController {
@@ -15,7 +16,6 @@ public class ProductController extends BaseController {
 
     @RequestMapping("/product/product")
     public String product(HttpServletRequest request){
-
 
         return "system_system";
     }

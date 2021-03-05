@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
   <head>
     <div th:replace="common/common_js :: common_js"></div>
+
   </head>
   <body>
     <div class="x-nav">
@@ -25,8 +26,8 @@
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','./admin-add.html')"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：1 条</span>
+        <button type="button" lay-submit="" class="layui-btn layui-btn-warm" id="exportExcel" name="exportExcel">
+          <i class="layui-icon"></i>导出Excel</button>
       </xblock>
       <table class="layui-table">
         <thead>
@@ -133,6 +134,43 @@
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
       }
+
+
+      function downloud(argument){
+        loading = layer.load(1, {shade: [0.3, '#fff']});
+        var $ = layui.jquery;
+        var excel = layui.exportExcel;
+          $.ajax({
+            url: '${}/getList',
+            dataType: 'json',
+            data: {
+              datas:JSON.stringify(data.field)
+            },
+            success: function(data) {
+              layer.close(loading);
+              layer.msg(data.msg);
+              // 假如返回的 res.data 是需要导出的列表数据
+              console.log(res.data);//
+              // 1. 数组头部新增表头
+              res.data.unshift({id:'id', name:'name', chinese: 'chinese', math:'math', english:'english'});
+              // 3. 执行导出函数，系统会弹出弹框
+              excel.exportExcel({
+                sheet1: res.data
+              }, '11.xlsx', 'xlsx');
+            },
+            error:function(res){
+              layer.close(loading);
+              layer.msg(res.msg);
+            }
+
+        });
+      }
+
+
+
+
+
+
     </script>
   </body>
 
