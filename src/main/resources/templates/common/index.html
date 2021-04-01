@@ -15,13 +15,13 @@
             <a href="javascript:;">admin</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
-              <dd><a onclick="x_admin_show('切换帐号','/login')">切换帐号</a></dd>
+              <dd><a onclick="x_admin_show('切换帐号','/')">切换帐号</a></dd>
               <dd><a th:href="@{/login}">退出</a></dd>
             </dl>
           </li>
           <li class="layui-nav-item to-index"><a th:href="@{/index(userId=${sysUser.Id})}">前台首页</a></li>
         </ul>
-        
+
     </div>
     <!-- 顶部结束 -->
     <!-- 中部开始 -->
@@ -31,7 +31,7 @@
         <ul id="nav">
             <li th:each="parentSysGroup:${groupMap.parentSysGroupList}">
                 <a href="javascript:;">
-                    <i class="iconfont">&#xe726;</i>
+                    <i class="iconfont"></i>
                     <cite th:text="${parentSysGroup.name}"></cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>

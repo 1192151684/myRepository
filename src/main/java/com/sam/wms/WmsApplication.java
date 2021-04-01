@@ -1,9 +1,10 @@
 package com.sam.wms;
     import org.springframework.boot.SpringApplication;
     import org.springframework.boot.autoconfigure.SpringBootApplication;
+    import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class WmsApplication {
+public class WmsApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(WmsApplication.class, args);

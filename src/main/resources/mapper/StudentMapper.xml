@@ -4,7 +4,7 @@
 
     <select id="findStudentMapperList"  resultType="com.sam.wms.entity.Student">
         SELECT
-            st.st_id id,
+            st.st_id,
             st.st_name name,
             MAX(CASE sc.co_id WHEN 1 THEN score ELSE 0 END ) chinese,
             MAX(CASE sc.co_id WHEN 2 THEN score ELSE 0 END ) math ,

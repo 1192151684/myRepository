@@ -3,26 +3,8 @@
 <mapper namespace="com.sam.wms.mapper.SysUserMapper">
 
     <select id="findUserBySignature" resultType="com.sam.wms.entity.SysUser" parameterType="com.sam.wms.entity.SysUser">
-      SELECT id,name FROM sys_user WHERE account = #{account} AND password = #{password} AND is_delete = '0'
-    </select>
-    
-    <select id="findUserByPrimary" resultType="com.sam.wms.entity.SysUser" parameterType="java.lang.Integer">
-        SELECT t1.id,t1.name,t2.isAdmin FROM sys_user t1 INNER JOIN sys_role t2 on t1.id = t2.user_id
-        WHERE t1.id = #{userId}
+      SELECT id, name FROM user WHERE 1=1 and code = #{code} AND password = #{password}
     </select>
 
-    <select id="findUserAll" resultType="com.sam.wms.entity.SysUser">
-     SELECT
-        t1.id,
-        t1.sex,
-        t1.name,
-        t1.account,
-        t1.phone,
-        t1.create_time createTime,
-        t2.r_name rName
-        FROM
-         sys_user t1
-          INNER JOIN sys_role t2 on t1.id = t2.user_id
-        WHERE t1.is_delete = 0
-    </select>
+
 </mapper>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="common/common_js :: common_js"></div>
+</head>
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">商品管理</a>
+        <a href="">商品信息</a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+    </div>
+    <xblock>
+        <button class="layui-btn" onclick="x_admin_show('添加用户','./admin-add.html')"><i class="layui-icon"></i>添加商品信息</button>
+    </xblock>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+            </th>
+            <th>商品编号</th>
+            <th>商品类型</th>
+            <th>商品名称</th>
+            <th>商品数量</th>
+            <th>创建时间</th>
+            <th>启用</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${pageInfo.list}">
+            <td>
+                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td th:text="${product.productSku}"></td>
+            <td th:text="${product.productTypeName}"></td>
+            <td th:text="${product.productName}"></td>
+            <td th:text="${product.productCount}"></td>
+            <td th:text="${#dates.format(product.productCreateBy, 'yyyy-MM-dd')}"></td>
+            <td th:text="${product.productIsuse} ==1 ?'启用':'未启用'"></td>
+         <!--   <td th:text="${product.productIsuse}"></td>-->
+            <td class="td-manage">
+                <button class="layui-btn layui-btn-sm layui-btn-danger"  th:onclick="'member_stop(this,\''+${product.productId}+'\');'">禁用</button>
+               <!-- <button class="layui-btn layui-btn-sm  layui-btn-warm"  th:onclick="member_del(this,${product.productId})">删除</button>-->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="page">
+        <div>
+            <a th:href="'?pageNo=1'">首页</a>
+            <a th:href="'?pageNo='+${pageInfo.prePage}">上一页</a>
+            <i  th:each="nav : ${pageInfo.navigatepageNums}">
+                <a th:if="${nav == pageInfo.pageNum}" th:text="${nav}"></a>
+            </i>
+                <a th:href="'?pageNo='+${pageInfo.nextPage}">下一页</a>
+                <a th:href="'?pageNo='+${pageInfo.pages}">尾页</a>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+
+    /*用户-停用*/
+    function member_stop(obj,id){
+        var prdocutId = id;
+        $.ajax({
+            url:'/product/productdel',
+            type:'post',
+            data:{"prdocutId":prdocutId},
+            dataType:"json",
+            async:false,
+            success : function(data) {
+                if(data.code == '1001'){
+                    layer.msg('删除成功!',{icon:1,time:1000});
+                    location.reload();
+                }else{
+                    layer.msg(data.code,{icon:1,time:1000});
+                }
+            }
+        })
+
+
+    }
+
+    /*用户-删除*/
+    function member_del(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+            $(obj).parents("tr").remove();
+            layer.msg('已删除!',{icon:1,time:1000});
+        });
+    }
+
+    function delAll (argument) {
+
+        var data = tableCheck.getData();
+
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+    }
+</script>
+</body>
+
+</html>

@@ -1,7 +1,8 @@
 package com.sam.wms.common.utils;
 
 import com.google.gson.Gson;
-import com.sam.wms.common.utils.ResultMassage;
+import com.sam.wms.common.enums.CommonResult;
+import com.sam.wms.common.enums.ResultType;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -46,14 +47,14 @@ public class BaseController {
 
     /**
      * json 返回
+     * @param
      * @param code
      * @param message
-     * @param body
+     * @param data
      * @return
      */
-    public static String resultMassageTojson(String code, String message, Object body){
-        ResultMassage resultMassage = new ResultMassage(code, message, toJson(body));
-        return toJson(resultMassage);
-    }
+    public static <T> CommonResult resultMassage(String code, String message, T data){
 
+        return new CommonResult<>(code,message,data);
+    }
 }

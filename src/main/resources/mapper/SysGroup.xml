@@ -11,4 +11,11 @@
         crate_by crateBy
     FROM sys_title
     </select>
+
+    <select id="totalInt"  resultType="com.sam.wms.entity.SysGroup">
+        SELECT
+            count(*)
+        FROM sys_title
+
+    </select>
 </mapper>

@@ -1,43 +1,76 @@
 package com.sam.wms.entity;
 
+import java.util.Date;
+
 public class Product {
-    private Integer id;
 
-    public Integer getId() {
-        return id;
+    private Integer productId;
+
+    private String productSku;
+
+    private String  productName;
+
+    private Integer productCount;
+
+    private Date productCreateBy;
+
+    private Integer productIsuse;
+
+    private String productTypeName;
+
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public String getBproduct_code() {
-        return bproduct_code;
+    public String getProductSku() {
+        return productSku;
     }
 
-    public void setBproduct_code(String bproduct_code) {
-        this.bproduct_code = bproduct_code;
+    public void setProductSku(String productSku) {
+        this.productSku = productSku;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getSku() {
-        return sku;
+    public Integer getProductCount() {
+        return productCount;
     }
 
-    public void setSku(String sku) {
-        this.sku = sku;
+    public void setProductCount(Integer productCount) {
+        this.productCount = productCount;
     }
 
-    private String bproduct_code;
+    public Date getProductCreateBy() {
+        return productCreateBy;
+    }
 
-    private String product_name;
+    public void setProductCreateBy(Date productCreateBy) {
+        this.productCreateBy = productCreateBy;
+    }
 
-    private String  sku;
+    public Integer getProductIsuse() {
+        return productIsuse;
+    }
+
+    public void setProductIsuse(Integer productIsuse) {
+        this.productIsuse = productIsuse;
+    }
+
+    public String getProductTypeName() {
+        return productTypeName;
+    }
+
+    public void setProductTypeName(String productTypeName) {
+        this.productTypeName = productTypeName;
+    }
 }

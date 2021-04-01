@@ -17,7 +17,6 @@
         </form>
     </div>
     <script type="text/javascript">
-        $(function(){});
         function submitLoginInfo() {
         var account = $("input[name = 'account']").val();
         var passWord = $("input[name = 'passWord']").val();
@@ -29,14 +28,11 @@
             async:false,
             success : function(data) {
                 var body = $.parseJSON(data.body);
-                if(body == null){
-                    alert(111);
-                }
-                var userId = body.id;
-                alert(userId);
                 if(data.code == '1001'){
+                    var userId = body.id;
                   window.location.href = "/index?userId=" + userId;
               }else{
+
               }
             }
         })

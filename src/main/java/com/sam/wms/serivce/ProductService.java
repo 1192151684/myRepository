@@ -1,5 +1,7 @@
 package com.sam.wms.serivce;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sam.wms.entity.Product;
 import com.sam.wms.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,13 @@ public class ProductService {
     ProductMapper productMapper;
 
     //商品列表
-    public List<Product> findProductList(Map<String,Object> paramMap){
-           List<Product> productList = productMapper.findProductList( paramMap);
-        return productList;
+    public PageInfo<Product> findProductList(Map<String,Object> paramMap ,int pageNo, int pageSize){
+        PageHelper.startPage(pageNo,pageSize);
+        List<Product> productList = productMapper.findProductList(paramMap);
+        PageInfo<Product> page = new PageInfo<Product>(productList);
+        return page;
     }
+
+
 
 }

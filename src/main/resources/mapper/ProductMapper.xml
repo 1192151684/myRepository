@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sam.wms.mapper.ProductMapper">
+
+    <select id="findProductList"  resultType="com.sam.wms.entity.Product" parameterType="java.util.Map">
+        SELECT
+            p.product_id productId,
+            p.product_sku productSku,
+            p.product_name productName,
+            p.product_count productCount,
+            p.product_create_by productCreateBy,
+            p.product_isuse productIsuse,
+            t.product_name productTypeName
+        FROM
+            pr_product p
+        LEFT JOIN pr_type t on p.product_type_id = t.product_type_id
+        GROUP BY p.product_id
+    </select>
+
+    <update id="editProduct" parameterType="java.lang.Integer">
+        UPDATE pr_product
+        SET product_isuse = '3'
+        where product_id =#{productId}
+    </update>
+</mapper>

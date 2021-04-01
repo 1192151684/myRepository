@@ -34,25 +34,23 @@ public class LoginContrller extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/checkUser", method = RequestMethod.POST)
     public String checkUser(HttpServletRequest request) {
+        SysUser sysUser = null;
         String account = request.getParameter("account");
         String passWord = request.getParameter("passWord");
-       /* if(account.isEmpty() || passWord.isEmpty()){
-            return resultMassageTojson(ResultType.OPERATION_FAIL.getCode(),"请输入密码",null);
+        if (account.isEmpty() || passWord.isEmpty()) {
+            return  toJson(resultMassage(ResultType.OPERATION_FAIL.getCode(),"请输入密码",null));
         }
         try {
-            SysUser sysUser = userService.checkUserSignature(account, passWord);
-            return resultMassageTojson(ResultType.SUCCESS.getCode(),null,sysUser);
-        }catch (RuntimeException e){
-            return resultMassageTojson(ResultType.SYSTEM_ERR.getCode(),e.getMessage(),null);
+            sysUser = userService.checkUserSignature(account, passWord);
+            if (sysUser != null) {
+                return toJson(resultMassage(ResultType.SUCCESS.getCode(),null,sysUser));
+            } else {
+                return toJson(resultMassage(ResultType.OPERATION_FAIL.getCode(),"账号或者密码错误",null));
+            }
+        } catch (RuntimeException e) {
+            return toJson(resultMassage(ResultType.SYSTEM_ERR.getCode(),e.getMessage(),null));
 
-        }*/
-        SysUser sysUser = new SysUser();
-        sysUser.setId(0);
-        sysUser.setName("admin");
-        sysUser.setPassword("123");
-        sysUser.setAccount("sfsdf");
-        sysUser.setAdmin(true);
-        return resultMassageTojson(ResultType.SUCCESS.getCode(), null, sysUser);
+        }
     }
 
     /**
@@ -65,7 +63,7 @@ public class LoginContrller extends BaseController {
     public String index(HttpServletRequest request) {
         String userIdReq = request.getParameter("userId");
         System.out.print(userIdReq);
-        Integer userId = null;
+        Integer userId = 0;
         try {
             //1、身份识别
             userId = Integer.parseInt(userIdReq);

@@ -13,4 +13,6 @@ public interface ProductMapper {
 
     List<Product> findProductList(Map<String,Object> paraMap);
 
+    Integer editProduct(Integer id);
+
 }

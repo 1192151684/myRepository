@@ -1,5 +1,6 @@
 package com.sam.wms.serivce;
 
+import com.sam.wms.common.pageutils.Page;
 import com.sam.wms.entity.SysGroup;
 import com.sam.wms.entity.SysUser;
 import com.sam.wms.mapper.SysGroupMapper;
@@ -20,16 +21,10 @@ public class UserService {
 
     public SysUser checkUserSignature(String account, String passWord) throws RuntimeException {
         SysUser sysUserParam = new SysUser();
-        sysUserParam.setAccount(account);
+        sysUserParam.setCode(account);
         sysUserParam.setPassword(passWord);
-        SysUser sysUser = sysUserMapper.findUserBySignature(sysUserParam);
-        if (sysUser == null) {
-            throw new RuntimeException("用户名不存在，或者密码输入错误");
-        }
-        if (!sysUser.getName().isEmpty()) {
-            return sysUser;
-        }
-        return null;
+         sysUserParam = sysUserMapper.findUserBySignature(sysUserParam);
+        return sysUserParam;
     }
 
     public SysUser findAcountInfo(Integer userId) {
@@ -43,19 +38,15 @@ public class UserService {
         Map<String,Object>  sysGroupRsqMap = new HashMap<String,Object>();
         List<SysGroup> parentSysGroupList = new ArrayList<SysGroup>();
         if(sysGroupList.size() != 0){
-           sysGroupList.forEach(item ->{
-              if(item.getParentId() == 0){
-                  parentSysGroupList.add(item); //添加1级菜单
-              }
-           });
+            sysGroupList.forEach(item ->{
+                if(item.getParentId() == 0){
+                    parentSysGroupList.add(item); //添加1级菜单
+                }
+            });
         }
         sysGroupRsqMap.put("parentSysGroupList", parentSysGroupList);
         sysGroupRsqMap.put("subSysGroupList", sysGroupList);
         return sysGroupRsqMap;
     }
 
-    public List<SysUser> findUserList() {
-
-        return  sysUserMapper.findUserAll();
-    }
 }
