@@ -54,7 +54,6 @@ public class BaseController {
      * @return
      */
     public static <T> CommonResult resultMassage(String code, String message, T data){
-
         return new CommonResult<>(code,message,data);
     }
 }

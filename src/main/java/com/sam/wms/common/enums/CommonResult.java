@@ -17,7 +17,7 @@ public class CommonResult <T>{
 
     private String code;
 
-    private String massage;
+    private String message;
 
     private T data;
 }

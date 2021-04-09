@@ -39,9 +39,9 @@ public class ProductController extends BaseController {
         return "product/product_product";
     }
 
-    @PostMapping("/product/productdel")
+    @PostMapping("/product/product/delete")
     @ResponseBody
-    public String delProduct(HttpServletRequest request,ModelAndView  mav){
+    public String delProduct(HttpServletRequest request){
       String prdocutIdStr =  request.getParameter("prdocutId");
 
       try {

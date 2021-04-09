@@ -1,46 +1,21 @@
 package com.sam.wms.entity;
 
-import java.util.Date;
 
+import lombok.Data;
+import org.springframework.stereotype.Component;
+
+@Data
+@Component
 public class SysUser {
 
     private Integer id;
 
-    private String  code;
+    private String account;
 
     private String name;
 
     private String password;
 
-    public Integer getId() {
-        return id;
-    }
+    private String email;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

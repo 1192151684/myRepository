@@ -21,7 +21,5 @@ public class OrderTask extends QuartzJobBean {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateTime = df.format(new Date());
 
-        log.info("订单下载执行**********"+ dateTime);
-        /// TODO: 2021/3/28 查询所有账户 底下的信息 实时更新数据库。 
     }
 }

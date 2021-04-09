@@ -14,7 +14,5 @@ public class ResultMassage<T> {
     private String message;
 
     private T data;
-
-
-    }
+}
 

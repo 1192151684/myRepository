@@ -1,9 +1,7 @@
 package com.sam.wms.serivce;
 
-import com.sam.wms.dto.FBAInvertoryReqDTO;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 /**
  * @author sam
@@ -12,13 +10,6 @@ import java.util.List;
  */
 @Service
 public class OrderSevice {
-
-    public FBAInvertoryReqDTO checkOrder(List<FBAInvertoryReqDTO> fbaInvertoryReqDtoList){
-
-
-     return null;
-
-    }
 
 
 }

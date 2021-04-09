@@ -1,5 +1,7 @@
-package com.sam.wms.task;
+package com.sam.wms.common.configs.quartz;
 
+import com.sam.wms.task.OrderTask;
+import com.sam.wms.task.ProductTask;
 import org.quartz.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

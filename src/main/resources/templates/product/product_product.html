@@ -55,11 +55,11 @@
         <div>
             <a th:href="'?pageNo=1'">首页</a>
             <a th:href="'?pageNo='+${pageInfo.prePage}">上一页</a>
-            <i  th:each="nav : ${pageInfo.navigatepageNums}">
+            <a th:each="nav : ${pageInfo.navigatepageNums}"  th:remove="tag">
                 <a th:if="${nav == pageInfo.pageNum}" th:text="${nav}"></a>
-            </i>
-                <a th:href="'?pageNo='+${pageInfo.nextPage}">下一页</a>
-                <a th:href="'?pageNo='+${pageInfo.pages}">尾页</a>
+            </a>
+            <a th:href="'?pageNo='+${pageInfo.nextPage}">下一页</a>
+            <a th:href="'?pageNo='+${pageInfo.pages}">尾页</a>
         </div>
     </div>
 </div>
@@ -78,11 +78,12 @@
         });
     });
 
+
     /*用户-停用*/
     function member_stop(obj,id){
         var prdocutId = id;
         $.ajax({
-            url:'/product/productdel',
+            url:'/product/product/delete',
             type:'post',
             data:{"prdocutId":prdocutId},
             dataType:"json",

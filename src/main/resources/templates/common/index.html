@@ -6,20 +6,19 @@
 <body>
     <!-- 顶部开始 -->
     <div class="container">
-        <div class="logo"><a th:href="@{/index(userId=${sysUser.Id})}">简视管理系统</a></div>
+        <div class="logo"><a th:href="@{/index(userId=${sysUser.id})}">简视管理系统</a></div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a th:text="${sysUser.name}"></a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
-              <dd><a onclick="x_admin_show('切换帐号','/')">切换帐号</a></dd>
-              <dd><a th:href="@{/login}">退出</a></dd>
+                <dd><a   th:onclick="'javascript:showWindow(\''+修改信息+'\',\''+${sysUser.Id}+'\');'">个人信息</a></dd>
+              <dd><a th:href="@{/logout}">退出</a></dd>
             </dl>
           </li>
-          <li class="layui-nav-item to-index"><a th:href="@{/index(userId=${sysUser.Id})}">前台首页</a></li>
+          <li class="layui-nav-item to-index"><a th:href="@{/index(userId=${sysUser.id})}">前台首页</a></li>
         </ul>
 
     </div>
@@ -72,6 +71,33 @@
     </div>
     <!-- 底部结束 -->
     <script>
+
+       function showWindow (title,userId){
+            var url  ="user?userId="+userId;
+           x_admin_show(title,url,600,400)
+        }
+
+       function member_stop(obj,id){
+            var prdocutId = id;
+            $.ajax({
+                url:'/product/product/delete',
+                type:'post',
+                data:{"prdocutId":prdocutId},
+                dataType:"json",
+                async:false,
+                success : function(data) {
+                    if(data.code == '1001'){
+                        layer.msg('删除成功!',{icon:1,time:1000});
+                        location.reload();
+                    }else{
+                        layer.msg(data.code,{icon:1,time:1000});
+                    }
+                }
+            })
+
+
+        }
+
     </script>
 </body>
 </html>

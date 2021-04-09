@@ -1,20 +1,26 @@
 package com.sam.wms.common.enums;
 
+import lombok.AllArgsConstructor;
 
-public enum  ResultType implements BaseEnum<ResultType, String> {
-
+/**
+ * @author sam
+ * date:2021.04.2021/4/8
+ * time:14:50
+ */
+public enum LoginType implements BaseEnum<ResultType, String> {
     SUCCESS("1001", "成功"),
 
-    SYSTEM_ERR("2001","系统异常"),
+    ACCOUNT_REE("2002","用户名错误"),
 
-    OPERATION_FAIL("2002","操作失败");
+    PASS_WORD("2003","密码错误");
 
     private String code;
 
     /** 枚举描述 */
     private String desc;
 
-    private ResultType(final String code, final String desc) {
+
+    private LoginType(final String code, final String desc) {
         this.code = code;
         this.desc = desc;
     }

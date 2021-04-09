@@ -1,6 +1,5 @@
 package com.sam.wms.controller.system;
 
-import com.sam.wms.common.pageutils.Page;
 import com.sam.wms.common.utils.BaseController;
 import com.sam.wms.entity.SysGroup;
 import com.sam.wms.mapper.SysGroupMapper;
@@ -26,4 +25,5 @@ public class SystemController extends BaseController{
         request.setAttribute("sysGroupList",grouplist);
         return "system/system_system";
     }
+
 }

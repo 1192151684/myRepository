@@ -23,7 +23,4 @@ public class ProductService {
         PageInfo<Product> page = new PageInfo<Product>(productList);
         return page;
     }
-
-
-
 }

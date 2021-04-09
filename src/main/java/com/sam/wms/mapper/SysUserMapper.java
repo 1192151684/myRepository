@@ -13,8 +13,7 @@ public interface SysUserMapper {
 
    SysUser findUserBySignature(SysUser sysUserParam);
 
+   SysUser findUserBySignatureByAccount(String account);
+
    SysUser findUserByPrimary(Integer userId);
-
-   List<SysUser> findUserAll();
-
 }

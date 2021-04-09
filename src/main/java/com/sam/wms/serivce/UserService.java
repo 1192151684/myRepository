@@ -1,6 +1,5 @@
 package com.sam.wms.serivce;
 
-import com.sam.wms.common.pageutils.Page;
 import com.sam.wms.entity.SysGroup;
 import com.sam.wms.entity.SysUser;
 import com.sam.wms.mapper.SysGroupMapper;
@@ -19,17 +18,21 @@ public class UserService {
     @Autowired
     SysGroupMapper sysGroupMapper;
 
-    public SysUser checkUserSignature(String account, String passWord) throws RuntimeException {
+    public SysUser checkUserSignature(String account, String passWord){
         SysUser sysUserParam = new SysUser();
-        sysUserParam.setCode(account);
+        sysUserParam.setAccount(account);
         sysUserParam.setPassword(passWord);
          sysUserParam = sysUserMapper.findUserBySignature(sysUserParam);
         return sysUserParam;
     }
+    public SysUser checkUserSignatureByAccount(String account){
+        return sysUserMapper. findUserBySignatureByAccount(account);
+    }
+
 
     public SysUser findAcountInfo(Integer userId) {
-        SysUser sysUser = new SysUser();
-        sysUser.setId(0);
+        SysUser sysUser = sysUserMapper.findUserByPrimary(userId);
+
         return sysUser;
     }
 
